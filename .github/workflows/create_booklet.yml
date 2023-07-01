@@ -1,5 +1,6 @@
 name: Create Booklet
 run-name: ${{ github.actor }} initializing booklet 
+on: [push]
 jobs:
   Init-BookLet:
     runs-on: ubuntu-latest
