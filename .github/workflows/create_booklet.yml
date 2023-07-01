@@ -13,5 +13,6 @@ jobs:
       - name: List files in the repository
         run: |
           cd ${{ github.workspace }}
-          git branch booklet
+          git checkout -b booklet
+          git push -u origin booklet
       - run: echo "🍏 This job's status is ${{ job.status }}."
