@@ -22,7 +22,10 @@ jobs:
       - name: use jupyter notebook cookiecutter to build template
         run: |
           pip install -U cookiecutter jupyter-book
-          pwd
+          git checkout booklet
+          jupyter-book create --cookiecutter ./
+          ls
+          git checkout main
           ls
           
         
