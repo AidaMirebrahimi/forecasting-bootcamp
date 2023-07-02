@@ -23,8 +23,6 @@ jobs:
         run: |
           pip install -U cookiecutter jupyter-book
           pwd
-          git checkout booklet
-          jupyter-book create --cookiecutter ./
           ls
           
         
