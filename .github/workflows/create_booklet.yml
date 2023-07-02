@@ -19,11 +19,27 @@ jobs:
           branch: 'booklet'
           sha: '${{ github.event.pull_request.head.sha }}'
           
-      - name: use jupyter notebook cookiecutter to build template
+      - name: install jupyter book and cookiecutter
         run: |
           pip install -U cookiecutter jupyter-book
+          
+      - name: set cookiecutter vars
+        run: |
+          echo "author_name" >> cookiecutter_vars.txt
+          echo "github_username" >> cookiecutter_vars.txt
+          echo "book_name" >> cookiecutter_vars.txt
+          echo "book_slug" >> cookiecutter_vars.txt
+          echo "book_short_description" >> cookiecutter_vars.txt
+          echo "0.1.0" >> cookiecutter_vars.txt
+          echo "1" >> cookiecutter_vars.txt
+          echo "1" >> cookiecutter_vars.txt
+      - name: check out to booklet branch
+        run: |
           git checkout booklet
-          jupyter-book create --cookiecutter ./
+          
+      - name: build template with cookiecutter
+        run: |
+          jupyter-book create --cookiecutter ./ < cookiecutter_vars.txt
           ls
           git checkout main
           ls
