@@ -21,24 +21,25 @@ jobs:
         run: |
           pip install -U cookiecutter jupyter-book
           
-      - name: set cookiecutter vars
-        run: |
-          echo "author_name" >> cookiecutter_vars.txt
-          echo "github_username" >> cookiecutter_vars.txt
-          echo "book_name" >> cookiecutter_vars.txt
-          echo "book_slug" >> cookiecutter_vars.txt
-          echo "book_short_description" >> cookiecutter_vars.txt
-          echo "0.1.0" >> cookiecutter_vars.txt
-          echo "1" >> cookiecutter_vars.txt
-          echo "1" >> cookiecutter_vars.txt
+#       - name: set cookiecutter vars
+#         run: |
+#           echo "author_name" >> cookiecutter_vars.txt
+#           echo "github_username" >> cookiecutter_vars.txt
+#           echo "book_name" >> cookiecutter_vars.txt
+#           echo "book_slug" >> cookiecutter_vars.txt
+#           echo "book_short_description" >> cookiecutter_vars.txt
+#           echo "0.1.0" >> cookiecutter_vars.txt
+#           echo "1" >> cookiecutter_vars.txt
+#           echo "1" >> cookiecutter_vars.txt
           
-      - name: build template with cookiecutter
-        run: |
-          jupyter-book create --cookiecutter ./ < cookiecutter_vars.txt
+#       - name: build template with cookiecutter
+#         run: |
+#           jupyter-book create --cookiecutter ./ < cookiecutter_vars.txt
           
       - name: build jupyter notebookk
         run: |
-          jupyter-book build ./book_slug
+          jupyter-book toc from-project ./
+          jupyter-book build ./
           
       - name: Commit changes
         run: |
