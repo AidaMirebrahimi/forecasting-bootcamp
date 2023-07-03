@@ -38,7 +38,7 @@ jobs:
           
       - name: build jupyter notebookk
         run: |
-          jupyter-book toc from-project ./
+          jupyter-book toc from-project ./ > _toc.yml
           jupyter-book build ./
           
       - name: Commit changes
