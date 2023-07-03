@@ -19,6 +19,10 @@ jobs:
           branch: 'booklet'
           sha: '${{ github.event.pull_request.head.sha }}'
           
+      - name: check out to booklet branch
+        run: |
+          git checkout booklet
+          
       - name: install jupyter book and cookiecutter
         run: |
           pip install -U cookiecutter jupyter-book
@@ -33,9 +37,6 @@ jobs:
           echo "0.1.0" >> cookiecutter_vars.txt
           echo "1" >> cookiecutter_vars.txt
           echo "1" >> cookiecutter_vars.txt
-      - name: check out to booklet branch
-        run: |
-          git checkout booklet
           
       - name: build template with cookiecutter
         run: |
