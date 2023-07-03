@@ -28,17 +28,14 @@ jobs:
         run: |
           echo "execute:" >> _config.yml
           echo "  execute_notebooks: off" >> _config.yml
-          echo "${{ github.ref }}"
-          echo "${{ github.repository }}"
-          echo "launch_buttons:"
-          echo "  notebook_interface: jupyterlab"
-          echo "  colab_url: https://colab.research.google.com"
-          echo "  binderhub_url: https://mybinder.org"
-          echo "  "
-          echo "repository:"
-          echo "  url: https://github.com/${{github.repository}}/"
-          echo "  path_to_book: ./"
-          echo "  branch: booklet"
+          echo "launch_buttons:" >> _config.yml
+          echo "  notebook_interface: jupyterlab" >> _config.yml
+          echo "  colab_url: https://colab.research.google.com" >> _config.yml
+          echo "  binderhub_url: https://mybinder.org" >> _config.yml
+          echo "repository:" >> _config.yml
+          echo "  url: https://github.com/${{github.repository}}/" >> _config.yml
+          echo "  path_to_book: ./" >> _config.yml
+          echo "  branch: booklet" >> _config.yml
           
       - name: setup deploybook workflow
         run: |
