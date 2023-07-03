@@ -1,6 +1,6 @@
 name: Create Booklet
 run-name: ${{ github.actor }} initializing booklet 
-on: [workflow_dispatch, push]
+on: [workflow_dispatch]
 jobs:
   Init-BookLet:
     runs-on: ubuntu-latest
