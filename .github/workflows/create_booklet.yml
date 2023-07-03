@@ -40,7 +40,7 @@ jobs:
         run: |
           jupyter-book toc from-project ./ > _toc.yml
           echo "execute:" >> _config.yml
-          echo "  execute_notebooks: off"
+          echo "  execute_notebooks: off" >> _config.yml
           ls
           jupyter-book build ./
           
