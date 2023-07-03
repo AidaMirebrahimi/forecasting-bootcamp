@@ -11,18 +11,19 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           
-      - name: create booklet branch
-        uses: peterjgrainger/action-create-branch@v2.2.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          branch: 'booklet'
-          sha: '${{ github.event.pull_request.head.sha }}'
+#       - name: create booklet branch
+#         uses: peterjgrainger/action-create-branch@v2.2.0
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           branch: 'booklet'
+#           sha: '${{ github.event.pull_request.head.sha }}'
           
       - name: check out to booklet branch
         run: |
           git branch -a
-          git checkout booklet
+          git checkout -b booklet
+          git branch -a
           
       - name: install jupyter book and cookiecutter
         run: |
