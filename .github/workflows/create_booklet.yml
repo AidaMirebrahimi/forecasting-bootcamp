@@ -22,7 +22,7 @@ jobs:
           
       - name: build jupyter book toc
         run: |
-          jupyter-book toc from-project ./ > _toc.yml
+          jupyter-book toc from-project ./ -t -e .md -e .ipynb > _toc.yml
           
       - name: build jupyter book config
         run: |
