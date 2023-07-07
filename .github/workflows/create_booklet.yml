@@ -19,7 +19,6 @@ jobs:
         run: |
           pip install -U cookiecutter jupyter-book
           
-          
       - name: build jupyter book toc
         run: |
           jupyter-book toc from-project ./ -t -e .md -e .ipynb > _toc.yml
@@ -27,20 +26,10 @@ jobs:
       - name: build jupyter book config
         run: |
           curl -o _config.yml 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/_config.yml'
-#         echo "execute:" >> _config.yml
-#         echo "  execute_notebooks: off" >> _config.yml
-#         echo "launch_buttons:" >> _config.yml
-#         echo "  notebook_interface: jupyterlab" >> _config.yml
-#         echo "  colab_url: https://colab.research.google.com" >> _config.yml
-#         echo "  binderhub_url: https://mybinder.org" >> _config.yml
-#         echo "repository:" >> _config.yml
-#         echo "  url: https://github.com/${{github.repository}}/" >> _config.yml
-#         echo "  path_to_book: ./" >> _config.yml
-#         echo "  branch: booklet" >> _config.yml
           
-      - name: setup deploybook workflow
+      - name: setup deploy_book workflow for booklet branch
         run: |
-          echo "fix this part later on"
+          curl -o .github/worfklows/deploy_book.yml 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/deploy_book.yml'
           
       # Build the book
       - name: Build the book
