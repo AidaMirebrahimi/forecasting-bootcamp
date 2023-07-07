@@ -34,15 +34,17 @@ jobs:
       - name: Commit changes
         run: |
           git add .
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git commit -a -m "init booklet"
         
       - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "booklet"
+        run: |
+          git push
+#         uses: ad-m/github-push-action@master
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           branch: "booklet"
       
       # Build the book
       - name: Build the book
