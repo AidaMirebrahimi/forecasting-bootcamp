@@ -1,7 +1,13 @@
-name: Create Booklet
+name: Booklet
 run-name: ${{ github.actor }} initializing booklet 
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - booklet
+      
 jobs:
+
   Init-BookLet:
     runs-on: ubuntu-latest
     steps:
@@ -40,11 +46,10 @@ jobs:
         
       - name: Push changes
         run: |
-          git push -u origin booklet
-#         uses: ad-m/github-push-action@master
-#         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           branch: "booklet"
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: "booklet"
       
       # Build the book
       - name: Build the book
