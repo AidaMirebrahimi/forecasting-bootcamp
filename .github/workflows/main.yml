@@ -58,7 +58,7 @@ jobs:
 #           publish_dir: ./_build/html
           
   deploy-book:
-    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+    if: ${{ github.event_name == 'push' && github.ref_name == 'booklet' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
