@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -36,24 +36,19 @@ jobs:
 #         run: |
 #           curl -o .github/workflows/deploy_book.yml 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/deploy_book.yml'
   
-      - name: Commit and push changes
+      - name: Commit changes
         run: |
-          git add -A
           git config --local user.email "${{ github.actor }}@users.noreply.github.com"
           git config --local user.name "${{ github.actor }}"
+          git add -A
           git commit -a -m "Add changes"
-          git push --set-upstream origin booklet
         
-#       - name: Push changes
-#         run: |
-#           git add .
-#           git commit -m "$ACTION_MESSAGE"
-          
-#         run: |
-#           uses: ad-m/github-push-action@master
-#           with:
-#             github_token: ${{ secrets.GITHUB_TOKEN }}
-#             branch: "booklet"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "booklet"
+          force_with_lease: true
       
       # Build the book
       - name: Build the book
