@@ -47,7 +47,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "booklet"
+          branch: ${{ github.ref }}
           force_with_lease: true
       
       # Build the book
