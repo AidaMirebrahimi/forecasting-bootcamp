@@ -1,5 +1,5 @@
 name: booklet
-run-name: ${{ github.actor }} initializing booklet 
+run-name: ${{ github.actor }} running booklet workflow
 on: 
   workflow_dispatch:
   push:
