@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - booklet
-      
 jobs:
   init_booklet:
     runs-on: ubuntu-latest
@@ -47,9 +46,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: booklet
-#           branch: ${{ github.ref }}
-          force_with_lease: true
+          branch: "booklet"
       
       # Build the book
       - name: Build the book
