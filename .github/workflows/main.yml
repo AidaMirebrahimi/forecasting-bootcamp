@@ -7,6 +7,7 @@ on:
       - booklet
 jobs:
   init_booklet:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'main'}}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
