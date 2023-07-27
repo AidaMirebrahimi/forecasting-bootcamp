@@ -1152,10 +1152,13 @@ function displayQuickchartButton(domScope) {
 </div>
 </div>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This notebook should run in a high-RAM env. If your runtime crashes due to RAM limits, adjust “portion_to_use” accordingling.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adjust for low ram Env</span>
-<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
     <span class="n">portion_to_use</span> <span class="o">=</span> <span class="mf">0.5</span>
     <span class="n">X_df</span> <span class="o">=</span> <span class="n">X_df</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_df</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)]</span>
     <span class="n">Y_df</span> <span class="o">=</span> <span class="n">Y_df</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Y_df</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)]</span>
@@ -1168,22 +1171,6 @@ function displayQuickchartButton(domScope) {
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y_df</span><span class="p">[</span><span class="s1">&#39;ds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Y_df</span><span class="p">[</span><span class="s1">&#39;ds&#39;</span><span class="p">])</span> <span class="c1"># Convert ds column to datetime format</span>
 <span class="n">X_df</span><span class="p">[</span><span class="s1">&#39;ds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">X_df</span><span class="p">[</span><span class="s1">&#39;ds&#39;</span><span class="p">])</span> <span class="c1"># Convert ds column to datetime format</span>
 <span class="n">f_cols</span> <span class="o">=</span> <span class="n">X_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">,</span> <span class="s1">&#39;ds&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-9-0577915538f7&gt;:1: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  Y_df[&#39;ds&#39;] = pd.to_datetime(Y_df[&#39;ds&#39;]) # Convert ds column to datetime format
-&lt;ipython-input-9-0577915538f7&gt;:2: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  X_df[&#39;ds&#39;] = pd.to_datetime(X_df[&#39;ds&#39;]) # Convert ds column to datetime format
 </pre></div>
 </div>
 </div>
@@ -1205,22 +1192,6 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
                                                                      <span class="n">f_cols</span><span class="o">=</span><span class="n">f_cols</span><span class="p">,</span>
                                                                      <span class="n">ds_in_val</span><span class="o">=</span><span class="n">n_val</span><span class="p">,</span>
                                                                      <span class="n">ds_in_test</span><span class="o">=</span><span class="n">n_test</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.10/dist-packages/neuralforecast/experiments/utils.py:140: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  X_df[col] = scaler_x.scale(x=X_df[col].values, mask=mask)
-/usr/local/lib/python3.10/dist-packages/neuralforecast/data/tsdataset.py:208: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument &#39;labels&#39; will be keyword-only.
-  X.drop([&#39;unique_id&#39;, &#39;ds&#39;], 1, inplace=True)
-/usr/local/lib/python3.10/dist-packages/neuralforecast/data/tsdataset.py:208: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument &#39;labels&#39; will be keyword-only.
-  X.drop([&#39;unique_id&#39;, &#39;ds&#39;], 1, inplace=True)
-/usr/local/lib/python3.10/dist-packages/neuralforecast/data/tsdataset.py:208: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument &#39;labels&#39; will be keyword-only.
-  X.drop([&#39;unique_id&#39;, &#39;ds&#39;], 1, inplace=True)
 </pre></div>
 </div>
 </div>
@@ -1347,33 +1318,6 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:lightning_fabric.utilities.seed:Global seed set to 42
-INFO:pytorch_lightning.utilities.rank_zero:GPU available: True (cuda), used: True
-INFO:pytorch_lightning.utilities.rank_zero:TPU available: False, using: 0 TPU cores
-INFO:pytorch_lightning.utilities.rank_zero:IPU available: False, using: 0 IPUs
-INFO:pytorch_lightning.utilities.rank_zero:HPU available: False, using: 0 HPUs
-WARNING:pytorch_lightning.loggers.tensorboard:Missing logger folder: /content/lightning_logs
-INFO:pytorch_lightning.accelerators.cuda:LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-INFO:pytorch_lightning.callbacks.model_summary:
-  | Name  | Type   | Params
----------------------------------
-0 | model | _NHITS | 932 K 
----------------------------------
-932 K     Trainable params
-0         Non-trainable params
-932 K     Total params
-3.731     Total estimated model params size (MB)
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "520b6d8faa084aff8910355bc0816ae5"}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.10/dist-packages/pytorch_lightning/loops/fit_loop.py:280: PossibleUserWarning: The number of training batches (431) is smaller than the logging interval Trainer(log_every_n_steps=500). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
-  rank_zero_warn(
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e9de8b9afd834a5fb7479daca688207e"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "274f5f2f19d74ee6863c22ccb8a4c1fb"}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:pytorch_lightning.utilities.rank_zero:`Trainer.fit` stopped: `max_epochs=1` reached.
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="test">
@@ -1389,13 +1333,6 @@ INFO:pytorch_lightning.callbacks.model_summary:
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:pytorch_lightning.accelerators.cuda:LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-/usr/local/lib/python3.10/dist-packages/neuralforecast/data/tsloader.py:46: UserWarning: This class wraps the pytorch `DataLoader` with a special collate function. If you want to use yours simply use `DataLoader`. Removing collate_fn
-  warnings.warn(
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ee2b6f8035b1409eb85f5753d0a4f506"}</script></div>
 </div>
 </section>
 <section id="visualize-predictions">
