@@ -16,40 +16,36 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           
-      - name: install python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+#       - name: check out to booklet branch
+#         run: |
+#           git checkout -b booklet
+          
+      - name: install jupyter book and cookiecutter
+        run: |
+          pip install -U cookiecutter jupyter-book
+          
+      - name: build jupyter book toc
+        run: |
+          jupyter-book toc from-project ./ -t -e .md -e .ipynb > _toc.yml
+          
+      - name: build jupyter book config
+        run: |
+          curl -o _config.yml 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/_config.yml'
+          curl -o change_yml.py 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/change_yml.py'
+      
+      - name: set config field in yml file
+        run: |
+          python change_yml.py _config.yml title ${{ github.repository }}
+          python change_yml.py _config.yml repository.url ${{ github.repositoryUrl }}
+          rm change_yml.py
           
       # create a new branch called booklet
-      - name: Create Booklet branch
+      - name: Create Booklet branch and push changes
         uses: peaceiris/actions-gh-pages@v3.6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
           publish_branch: booklet
-          
-#       - name: check out to booklet branch
-#         run: |
-#           git checkout -b booklet
-          
-#       - name: install jupyter book and cookiecutter
-#         run: |
-#           pip install -U cookiecutter jupyter-book
-          
-#       - name: build jupyter book toc
-#         run: |
-#           jupyter-book toc from-project ./ -t -e .md -e .ipynb > _toc.yml
-          
-#       - name: build jupyter book config
-#         run: |
-#           curl -o _config.yml 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/_config.yml'
-#          curl -o change_yml.py 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/change_yml.py'
-      
-#       - name: set config field in yml file
-#         run: |
-#           python change_yml.py _config.yml title ${{ github.repository }}
-#           python change_yml.py _config.yml repository.url ${{ github.repositoryUrl }}
           
 #       - name: Commit changes
 #         run: |
