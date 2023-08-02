@@ -1,13 +1,13 @@
 name: booklet
-run-name: running booklet workflow
+run-name: ${{ github.actor }} initializing booklet 
 on: 
   workflow_dispatch:
   push:
     branches:
       - booklet
+      
 jobs:
   init_booklet:
-    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'main' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -34,16 +34,16 @@ jobs:
   
       - name: Commit changes
         run: |
-          git add .
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -a -m "init booklet"
+          git commit -a -m "Add changes"
         
       - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "booklet"
+        run: |
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: "booklet"
       
       # Build the book
       - name: Build the book
@@ -56,34 +56,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_build/html
-          
-  deploy-book:
-    if: ${{ github.event_name == 'push' && github.ref_name == 'booklet' }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    # Install dependencies
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-        
-    - name: install jupyter book and cookiecutter
-      run: |
-        pip install -U cookiecutter jupyter-book
-
-    # Build the book
-    - name: Build the book
-      run: |
-        jupyter-book build .
-
-    # Push the book's HTML to github-pages
-    - name: GitHub Pages action
-      uses: peaceiris/actions-gh-pages@v3.6.1
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_build/html
-
-        
-        
