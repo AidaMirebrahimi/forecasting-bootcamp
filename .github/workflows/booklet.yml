@@ -16,10 +16,10 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           
-      - name: install python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+#       - name: install python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.x'
           
       - name: check out to booklet branch
         run: |
@@ -36,12 +36,12 @@ jobs:
       - name: build jupyter book config
         run: |
           curl -o _config.yml 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/_config.yml'
-          curl -o change_yml.py 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/change_yml.py'
+#          curl -o change_yml.py 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/change_yml.py'
       
-      - name: set config field in yml file
-        run: |
-          python change_yml.py _config.yml title ${{ github.repository }}
-          python change_yml.py _config.yml repository.url ${{ github.repositoryUrl }}
+#       - name: set config field in yml file
+#         run: |
+#           python change_yml.py _config.yml title ${{ github.repository }}
+#           python change_yml.py _config.yml repository.url ${{ github.repositoryUrl }}
           
       - name: Commit changes
         run: |
