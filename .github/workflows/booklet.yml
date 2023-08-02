@@ -16,10 +16,18 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           
-#       - name: install python
-#         uses: actions/setup-python@v4
-#         with:
-#           python-version: '3.x'
+      - name: install python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          
+      # create a new branch called booklet
+      - name: Create Booklet branch
+        uses: peaceiris/actions-gh-pages@v3.6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: booklet
           
 #       - name: check out to booklet branch
 #         run: |
@@ -57,13 +65,7 @@ jobs:
 #             github_token: ${{ secrets.GITHUB_TOKEN }}
 #             branch: "booklet"
 
-      # Push the book's HTML to github-pages
-      - name: GitHub Pages action to push to booklet
-        uses: peaceiris/actions-gh-pages@v3.6.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          publish_branch: booklet
+
       
 #       # Build the book
 #       - name: Build the book
