@@ -56,26 +56,18 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: "booklet"
           
-#       # create a new branch called booklet
-#       - name: Create Booklet branch and push changes
-#         uses: peaceiris/actions-gh-pages@v3.6.1
-#         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           publish_dir: .
-#           publish_branch: booklet
+      # Build the book
+      - name: Build the book
+        run: |
+          jupyter-book build .
           
-#       # Build the book
-#       - name: Build the book
-#         run: |
-#           jupyter-book build .
-          
-#       # Push the book's HTML to github-pages
-#       - name: GitHub Pages action
-#         uses: peaceiris/actions-gh-pages@v3.6.1
-#         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           publish_dir: ./_build/html
-#           publish_branch: gh-pages
+      # Push the book's HTML to github-pages
+      - name: GitHub Pages action
+        uses: peaceiris/actions-gh-pages@v3.6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_build/html
+          publish_branch: gh-pages
           
   # this job is executed when ever a push on booklet branch is made
   # it creates and the booklet and deploys gh-pages
@@ -105,34 +97,3 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_build/html
         publish_branch: gh-pages
-
-          
-        
-          
-#       - name: Commit changes
-#         run: |
-#           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-#           git config --local user.name "github-actions[bot]"
-#           git add _config.yml _toc.yml
-#           git commit -m "Add changes"
-        
-#       - name: Push changes
-#         run: |
-#           uses: ad-m/github-push-action@master
-#           with:
-#             github_token: ${{ secrets.GITHUB_TOKEN }}
-#             branch: "booklet"
-
-
-      
-#       # Build the book
-#       - name: Build the book
-#         run: |
-#           jupyter-book build .
-          
-#       # Push the book's HTML to github-pages
-#       - name: GitHub Pages action
-#         uses: peaceiris/actions-gh-pages@v3.6.1
-#         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           publish_dir: ./_build/html
