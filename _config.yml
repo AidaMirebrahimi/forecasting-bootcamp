@@ -3,7 +3,7 @@ copyright: Vector Institute
 execute:
   execute_notebooks: false
 html:
-  google_analytics_id: __G_ANALYTICS_ID__
+  google_analytics_id: G-8K56NC48NQ
   use_edit_page_button: true
   use_issues_button: true
   use_repository_button: true
@@ -16,4 +16,4 @@ repository:
   branch: booklet
   path_to_book: ./
   url: git://github.com/SajjadPSavoji/forecasting-bootcamp.git
-title: SajjadPSavoji/forecasting-bootcamp
+title: Forecasting Bootcamp
