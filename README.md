@@ -1,4 +1,4 @@
-<a href="https://vectorinstitute.ai/"><img src="../media-assets-do-not-merge/vector-logo-black.svg?raw=true)" width="175" align="right" /></a>
+<a href="https://vectorinstitute.ai/"><img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" width="175" align="right" /></a>
 
 # Forecasting Bootcamp
 
